@@ -23,7 +23,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Weather App',
+        title: 'Weather atm',
         name: 'Miguel'
     })
 })
@@ -57,14 +57,13 @@ app.get('/weather', (req, res) => {
         
     
         forecast(latitude, longitude, (error, forecastData) => {
-            console.log('got here')
             if(error){
                 return res.send({error})
             }
             
             res.send({
                 forecast: forecastData,
-                
+                location,
                 address: req.query.address
             })
           })
